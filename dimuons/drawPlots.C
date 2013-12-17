@@ -40,7 +40,7 @@ doThe1DPlot(TString nom, TString theAxis){
     c0->SetFillColor(0);
     kine->SetLineWidth(2);
     kine->GetXaxis()->SetTitle(theAxis);
-    kine->SetMaximum(0.6);
+    kine->SetMaximum(1.4);
     kine->SetMinimum(0.);
     kine->GetYaxis()->SetTitle("#epsilon");
     kine->Draw("E1");
@@ -73,8 +73,8 @@ doThe1DPlot(TString nom, TString theAxis){
     TLegend *t = new TLegend(0.23,0.66,0.88,0.85);
     t->SetFillColor(0);
     t->SetLineColor(0);
-    t->AddEntry(kine,"P_{T} cuts");
-    t->AddEntry(GTK,"+ Global Or Tracker Muon");
+    t->AddEntry(GTK,"Global Or Tracker Muon");
+    t->AddEntry(kine,"+ P_{T} cuts");
     t->AddEntry(GT,"+ quality cuts");
     t->AddEntry(PF,"+ PF muon");
     t->AddEntry(TK,"+ quality cut on track");

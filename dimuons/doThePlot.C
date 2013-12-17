@@ -71,7 +71,7 @@ doAndTheVertexPlot(TString name, TString cuts){
     TH1F *nVtxN = new TH1F("nVtxN","",35,0,40);
     for (int i = 1 ; i <40 ; i++){
         nbBefore = chain->GetEntries(Form("nVtx==%i",i));
-        nbAfter = chain->GetEntries(Form("(((pt>other_pt)&&(pt>20&&other_pt>10))||((other_pt>pt)&&(pt>10&&other_pt>20)))&&nVtx==%i&&",i)+cuts);
+        nbAfter = chain->GetEntries(Form("nVtx==%i&&",i)+cuts);
         nVtxD->SetBinContent(i+1, nbBefore);
         nVtxN->SetBinContent(i+1, nbAfter);
         nVtx->Divide(nVtxN,nVtxD,1,1);
@@ -89,13 +89,13 @@ doThePlot(){
   
     
     // function of vertex
-    doAndTheVertexPlot("kine","1");
     doAndTheVertexPlot("GTK","globalOrTrackerMuon==1&&other_globalOrTrackerMuon==1");
-    doAndTheVertexPlot("GT","globalOrTrackerMuonTight==1&&other_globalOrTrackerMuonTight==1");
-    doAndTheVertexPlot("PF","globalOrTrackerMuonTight==1&&PFmuon==1&&other_globalOrTrackerMuonTight==1&&other_PFmuon==1");
-    doAndTheVertexPlot("TK","globalOrTrackerMuonTight==1&&PFmuon==1&&trackCleaning==1&&other_globalOrTrackerMuonTight==1&&other_PFmuon==1&&other_trackCleaning==1");
-    doAndTheVertexPlot("IP","globalOrTrackerMuonTight==1&&PFmuon==1&&trackCleaning==1&&passMuonIPcuts==1&&other_globalOrTrackerMuonTight==1&&other_PFmuon==1&&other_trackCleaning==1&&other_passMuonIPcuts==1");
-    doAndTheVertexPlot("ISO","globalOrTrackerMuonTight==1&&PFmuon==1&&trackCleaning==1&&passMuonIPcuts==1&&passMuonMVA==1&&other_globalOrTrackerMuonTight==1&&other_PFmuon==1&&other_trackCleaning==1&&other_passMuonIPcuts==1&&other_passMuonMVA==1");
+    doAndTheVertexPlot("kine","globalOrTrackerMuon==1&&other_globalOrTrackerMuon==1&&(((pt>other_pt)&&(pt>20&&other_pt>10))||((other_pt>pt)&&(pt>10&&other_pt>20)))");
+    doAndTheVertexPlot("GT","(((pt>other_pt)&&(pt>20&&other_pt>10))||((other_pt>pt)&&(pt>10&&other_pt>20)))&&globalOrTrackerMuonTight==1&&other_globalOrTrackerMuonTight==1");
+    doAndTheVertexPlot("PF","(((pt>other_pt)&&(pt>20&&other_pt>10))||((other_pt>pt)&&(pt>10&&other_pt>20)))&&globalOrTrackerMuonTight==1&&PFmuon==1&&other_globalOrTrackerMuonTight==1&&other_PFmuon==1");
+    doAndTheVertexPlot("TK","(((pt>other_pt)&&(pt>20&&other_pt>10))||((other_pt>pt)&&(pt>10&&other_pt>20)))&&globalOrTrackerMuonTight==1&&PFmuon==1&&trackCleaning==1&&other_globalOrTrackerMuonTight==1&&other_PFmuon==1&&other_trackCleaning==1");
+    doAndTheVertexPlot("IP","(((pt>other_pt)&&(pt>20&&other_pt>10))||((other_pt>pt)&&(pt>10&&other_pt>20)))&&globalOrTrackerMuonTight==1&&PFmuon==1&&trackCleaning==1&&passMuonIPcuts==1&&other_globalOrTrackerMuonTight==1&&other_PFmuon==1&&other_trackCleaning==1&&other_passMuonIPcuts==1");
+    doAndTheVertexPlot("ISO","(((pt>other_pt)&&(pt>20&&other_pt>10))||((other_pt>pt)&&(pt>10&&other_pt>20)))&&globalOrTrackerMuonTight==1&&PFmuon==1&&trackCleaning==1&&passMuonIPcuts==1&&passMuonMVA==1&&other_globalOrTrackerMuonTight==1&&other_PFmuon==1&&other_trackCleaning==1&&other_passMuonIPcuts==1&&other_passMuonMVA==1");
   
     
     
